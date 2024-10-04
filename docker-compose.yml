@@ -1,10 +1,64 @@
+# services:
+#   postgres:
+#     image: postgres:13
+#     container_name: postgres_order_management
+#     ports:
+#       - '${POSTGRES_PORT}:5432'
+#     environment:
+#       POSTGRES_USER: ${POSTGRES_USER}
+#       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+#       POSTGRES_DB: ${POSTGRES_DB}
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#     networks:
+#       - order_network
+
+#   pgadmin:
+#     image: dpage/pgadmin4
+#     container_name: pgadmin_order_management
+#     ports:
+#       - '8080:80'
+#     environment:
+#       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+#       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+#     depends_on:
+#       - postgres
+#     networks:
+#       - order_network
+
+#   nestjs:
+#     container_name: nestjs_order_management
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     ports:
+#       - '3000:3000'
+#     environment:
+#       POSTGRES_USER: ${POSTGRES_USER}
+#       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+#       POSTGRES_DB: ${POSTGRES_DB}
+#       POSTGRES_PORT: ${POSTGRES_PORT}
+#       JWT_SECRET: ${JWT_SECRET}
+#     depends_on:
+#       - postgres
+#     volumes:
+#       - .:/app
+#     networks:
+#       - order_network
+
+# networks:
+#   order_network:
+#     driver: bridge
+
+# volumes:
+#   postgres_data:
 
 services:
-  postgres:
+  db:
     image: postgres:13
-    container_name: postgres_order_management
+    container_name: db_order_management
     ports:
-      - '${POSTGRES_PORT}:5432'
+      - '5432:5432'
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -23,27 +77,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     depends_on:
-      - postgres
-    networks:
-      - order_network
-
-  nestjs:
-    container_name: nestjs_order_management
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - '${APP_PORT}:3000'
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_PORT: ${POSTGRES_PORT}
-      JWT_SECRET: ${JWT_SECRET}
-    depends_on:
-      - postgres
-    volumes:
-      - .:/app
+      - db
     networks:
       - order_network
 
