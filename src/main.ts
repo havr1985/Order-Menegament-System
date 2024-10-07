@@ -10,6 +10,7 @@ async function bootstrap() {
     .setTitle('Order Management System Api')
     .setDescription('API documentation for the OMN')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
