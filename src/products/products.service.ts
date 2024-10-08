@@ -4,16 +4,19 @@ import { Product } from './product.entity';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { CategoriesService } from 'src/categories/categories.service';
 
 @Injectable()
 export class ProductsService {
   constructor(
     @InjectRepository(Product)
     private readonly productsRepository: Repository<Product>,
+    private readonly categoriesService: CategoriesService,
   ) {}
 
-  findAllProducts(): Promise<Product[]> {
-    return this.productsRepository.find();
+  findAllProducts(page: number, limit: number): Promise<Product[]> {
+    const skip = (page - 1) * limit;
+    return this.productsRepository.find({ skip, take: limit });
   }
 
   async findProductById(id: number): Promise<Product> {
@@ -24,8 +27,13 @@ export class ProductsService {
     return product;
   }
 
-  createProduct(createProductDto: CreateProductDto): Promise<Product> {
-    const product = this.productsRepository.create(createProductDto);
+  async createProduct(createProductDto: CreateProductDto): Promise<Product> {
+    const { categoryId, ...productData } = createProductDto;
+    const category = await this.categoriesService.findCategoryById(categoryId);
+    const product = this.productsRepository.create({
+      ...productData,
+      category,
+    });
     return this.productsRepository.save(product);
   }
 
