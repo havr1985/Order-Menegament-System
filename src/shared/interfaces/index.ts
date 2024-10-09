@@ -10,3 +10,5 @@ export interface JwtPayload {
 export interface RequestWithUser extends Request {
   user: User;
 }
+
+
