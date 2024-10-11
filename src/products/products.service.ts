@@ -50,4 +50,10 @@ export class ProductsService {
     const product = await this.findProductById(id);
     await this.productsRepository.remove(product);
   }
+
+  async updateQuantity(productId: number, quantityChange: number): Promise<Product>{
+    const product = await this.findProductById(productId);
+    product.quantity -= quantityChange;
+    return this.productsRepository.save(product)
+  }
 }

@@ -15,6 +15,12 @@ export class Product {
   @Column()
   quantity: number;
 
+  @Column()
+  description: string;
+
+  @Column()
+  imageUrl: string;
+
   @ManyToOne(() => Category, (category) => category.products, {onDelete: 'CASCADE'})
   category: Category;
 }

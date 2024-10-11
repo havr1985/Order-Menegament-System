@@ -26,6 +26,21 @@ export class CreateProductDto {
   @IsNotEmpty()
   quantity: number;
 
+  @ApiProperty({
+    example: 'It is very good laptop',
+    description: 'The description of the product',
+  })
+  @IsString()
+  @IsNotEmpty()
+  description: string;
+
+  @ApiProperty({
+    example: 'http://example.com/example.jpg',
+    description: 'Image url of the product',
+  })
+  @IsString()
+  imageUrl: string;
+
   @ApiProperty({ example: 1, description: 'ID of the category' })
   @IsInt()
   @IsNotEmpty()
