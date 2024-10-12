@@ -33,6 +33,11 @@ export class CreateUsersTable1728625977111 implements MigrationInterface {
             default: `'user'`,
           },
           {
+            name: 'basket',
+            type: 'json',
+            isNullable: true,
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

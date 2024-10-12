@@ -39,7 +39,7 @@ export class OrdersService {
     if (product.quantity < quantity) {
       throw new NotFoundException('Not enought quantity avaliable for product');
     }
-    await this.productsService.updateQuantity(productId, quantity);
+    await this.productsService.updateQuantity(productId, -quantity);
 
     const order = this.ordersRepository.create({
       user,

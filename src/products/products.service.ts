@@ -14,9 +14,15 @@ export class ProductsService {
     private readonly categoriesService: CategoriesService,
   ) {}
 
-  findAllProducts(page: number, limit: number): Promise<Product[]> {
-    const skip = (page - 1) * limit;
-    return this.productsRepository.find({ skip, take: limit });
+  async findAllProducts(
+    page: number,
+    limit: number,
+  ): Promise<{ data: Product[]; total: number }> {
+    const [data, total] = await this.productsRepository.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+    return { data, total };
   }
 
   async findProductById(id: number): Promise<Product> {
@@ -51,9 +57,15 @@ export class ProductsService {
     await this.productsRepository.remove(product);
   }
 
-  async updateQuantity(productId: number, quantityChange: number): Promise<Product>{
+  async updateQuantity(
+    productId: number,
+    quantityChange: number,
+  ): Promise<Product> {
     const product = await this.findProductById(productId);
-    product.quantity -= quantityChange;
-    return this.productsRepository.save(product)
+    if (product.quantity + quantityChange < 0) {
+      throw new Error('Not enough quantity avaliable')
+    }
+    product.quantity += quantityChange;
+    return this.productsRepository.save(product);
   }
 }

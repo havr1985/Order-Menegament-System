@@ -4,6 +4,7 @@ import { Product } from 'src/products/product.entity';
 import { User } from 'src/users/user.entity';
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
+import { Basket } from 'src/baskets/basket.entity';
 
 dotenv.config();
 
@@ -14,7 +15,7 @@ export const AppDataSource = new DataSource({
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
-  entities: [Product, User, Order, Category],
+  entities: [Product, User, Order, Category, Basket],
   migrations: ['src/database/migrations/*.ts'],
   synchronize: false,
   logging: true,
