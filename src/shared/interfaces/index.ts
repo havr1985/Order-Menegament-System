@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { User } from 'src/users/user.entity';
+import { User } from 'src/modules/users/user.entity';
 
 export interface JwtPayload {
   sub: number;
@@ -10,5 +10,3 @@ export interface JwtPayload {
 export interface RequestWithUser extends Request {
   user: User;
 }
-
-

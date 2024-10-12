@@ -4,8 +4,8 @@ import { Order } from './order.entity';
 import { Repository } from 'typeorm';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { UsersService } from 'src/users/users.service';
-import { ProductsService } from 'src/products/products.service';
+import { UsersService } from 'src/modules/users/users.service';
+import { ProductsService } from 'src/modules/products/products.service';
 
 @Injectable()
 export class OrdersService {

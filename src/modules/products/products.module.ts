@@ -3,7 +3,7 @@ import { ProductsService } from './products.service';
 import { ProductsController } from './products.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Product } from './product.entity';
-import { CategoriesModule } from 'src/categories/categories.module';
+import { CategoriesModule } from 'src/modules/categories/categories.module';
 
 @Module({
   imports: [

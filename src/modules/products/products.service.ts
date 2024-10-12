@@ -4,7 +4,7 @@ import { Product } from './product.entity';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { CategoriesService } from 'src/categories/categories.service';
+import { CategoriesService } from 'src/modules/categories/categories.service';
 
 @Injectable()
 export class ProductsService {
@@ -63,7 +63,7 @@ export class ProductsService {
   ): Promise<Product> {
     const product = await this.findProductById(productId);
     if (product.quantity + quantityChange < 0) {
-      throw new Error('Not enough quantity avaliable')
+      throw new Error('Not enough quantity avaliable');
     }
     product.quantity += quantityChange;
     return this.productsRepository.save(product);

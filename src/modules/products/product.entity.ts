@@ -1,4 +1,4 @@
-import { Category } from 'src/categories/category.entity';
+import { Category } from 'src/modules/categories/category.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -21,6 +21,8 @@ export class Product {
   @Column()
   imageUrl: string;
 
-  @ManyToOne(() => Category, (category) => category.products, {onDelete: 'CASCADE'})
+  @ManyToOne(() => Category, (category) => category.products, {
+    onDelete: 'CASCADE',
+  })
   category: Category;
 }

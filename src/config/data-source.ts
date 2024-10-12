@@ -1,10 +1,10 @@
-import { Category } from 'src/categories/category.entity';
-import { Order } from 'src/orders/order.entity';
-import { Product } from 'src/products/product.entity';
-import { User } from 'src/users/user.entity';
+import { Category } from 'src/modules/categories/category.entity';
+import { Order } from 'src/modules/orders/order.entity';
+import { Product } from 'src/modules/products/product.entity';
+import { User } from 'src/modules/users/user.entity';
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
-import { Basket } from 'src/baskets/basket.entity';
+import { Basket } from 'src/modules/baskets/basket.entity';
 
 dotenv.config();
 

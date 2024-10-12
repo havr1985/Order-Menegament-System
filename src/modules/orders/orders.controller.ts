@@ -11,10 +11,10 @@ import {
 import { OrdersService } from './orders.service';
 import { Order } from './order.entity';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { Roles } from 'src/auth/roles/roles.decorator';
-import { RolesGuard } from 'src/auth/roles/roles.guard';
-import { Role } from 'src/auth/roles/roles.enum';
+import { JwtAuthGuard } from 'src/modules/auth/jwt-auth.guard';
+import { Roles } from 'src/modules/auth/roles/roles.decorator';
+import { RolesGuard } from 'src/modules/auth/roles/roles.guard';
+import { Role } from 'src/modules/auth/roles/roles.enum';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 

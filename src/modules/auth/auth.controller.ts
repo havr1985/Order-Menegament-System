@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { User } from 'src/users/user.entity';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { User } from 'src/modules/users/user.entity';
+import { CreateUserDto } from 'src/modules/users/dto/create-user.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { LoginUserDto } from './dto/login-user.dto';

@@ -19,10 +19,10 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { RolesGuard } from 'src/auth/roles/roles.guard';
-import { Roles } from 'src/auth/roles/roles.decorator';
-import { Role } from 'src/auth/roles/roles.enum';
+import { JwtAuthGuard } from 'src/modules/auth/jwt-auth.guard';
+import { RolesGuard } from 'src/modules/auth/roles/roles.guard';
+import { Roles } from 'src/modules/auth/roles/roles.decorator';
+import { Role } from 'src/modules/auth/roles/roles.enum';
 
 @ApiTags('Products')
 @Controller('products')

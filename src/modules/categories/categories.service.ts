@@ -4,7 +4,7 @@ import { Category } from './category.entity';
 import { Repository } from 'typeorm';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { Product } from 'src/products/product.entity';
+import { Product } from 'src/modules/products/product.entity';
 
 @Injectable()
 export class CategoriesService {
@@ -33,7 +33,7 @@ export class CategoriesService {
     limit: number,
   ): Promise<Category> {
     const skip = (page - 1) * limit;
-    const category = await this.findCategoryById(id)
+    const category = await this.findCategoryById(id);
     const products = await this.productsRepository.find({
       where: { category: { id } },
       skip,

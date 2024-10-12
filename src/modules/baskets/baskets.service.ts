@@ -2,10 +2,10 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Basket } from './basket.entity';
 import { Repository } from 'typeorm';
-import { UsersService } from 'src/users/users.service';
-import { ProductsService } from 'src/products/products.service';
+import { UsersService } from 'src/modules/users/users.service';
+import { ProductsService } from 'src/modules/products/products.service';
 import { AddToBasketDto } from './dto/add-to-basket.dto';
-import { OrdersService } from 'src/orders/orders.service';
+import { OrdersService } from 'src/modules/orders/orders.service';
 import { OrderStatus } from 'src/shared/enums';
 
 @Injectable()
